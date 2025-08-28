@@ -1,0 +1,29 @@
+{
+  "name": "bookstore-backend",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Backend service for Bookstore app (Express + Mongoose)",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon"
+  },
+  "engines": {
+    "node": ">=18.18"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "cloudinary": "^2.6.0",
+    "cors": "^2.8.5",
+    "cron": "^4.1.0",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.12.1",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.7"
+  }
+}
