@@ -6,6 +6,13 @@ const userSchema = new mongoose.Schema(
     name: { type: String, required: true, trim: true },
     email: { type: String, required: true, unique: true, lowercase: true, index: true },
     password: { type: String, required: true, minlength: 6 },
+    profileImage: {
+      type: String,
+      default: function () {
+        const seed = encodeURIComponent(this.name || 'User');
+        return `https://api.dicebear.com/7.x/avataaars/svg?seed=${seed}`;
+      },
+    },
   },
   { timestamps: true }
 );

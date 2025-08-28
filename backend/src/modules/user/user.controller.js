@@ -11,6 +11,16 @@ export const UserController = {
     }
   },
 
+  async login(req, res, next) {
+    try {
+      const { email, password } = req.body;
+      const result = await UserService.login({ email, password });
+      res.json(result);
+    } catch (err) {
+      next(err);
+    }
+  },
+
   async me(req, res, next) {
     try {
       // For demo purposes, accept userId from query (avoid auth middleware here)

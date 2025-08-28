@@ -8,6 +8,11 @@ export const RegisterSchema = z.object({
   password: z.string().min(6, 'Password must be at least 6 characters'),
 });
 
+export const LoginSchema = z.object({
+  email: z.string().email('Invalid email'),
+  password: z.string().min(6, 'Password must be at least 6 characters'),
+});
+
 export const MeQuerySchema = z.object({
   userId: z.string().regex(objectIdRegex, 'Invalid user id'),
 });

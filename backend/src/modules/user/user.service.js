@@ -12,7 +12,26 @@ export const UserService = {
     }
     const created = await UserRepository.create({ name, email, password });
     const { token } = this.issueToken(created._id, email);
-    return { user: { _id: created._id, name: created.name, email: created.email }, token };
+    return {
+      user: { _id: created._id, name: created.name, email: created.email, profileImage: created.profileImage },
+      token,
+    };
+  },
+
+  async login({ email, password }) {
+    const user = await UserRepository.findByEmail(email);
+    // Avoid revealing which field is wrong
+    const invalidErr = new Error('Invalid email or password');
+    invalidErr.status = 401;
+    if (!user) {
+      throw invalidErr;
+    }
+    const ok = await user.comparePassword(password);
+    if (!ok) {
+      throw invalidErr;
+    }
+    const { token } = this.issueToken(user._id, user.email);
+    return { user: { _id: user._id, name: user.name, email: user.email, profileImage: user.profileImage }, token };
   },
 
   async getProfile(id) {
